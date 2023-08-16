@@ -1,0 +1,6 @@
+ans = []
+words = text.split(' ')
+for i in range(len(words)):
+	if words[i]==first and words[i+1]==second:
+		ans.append(words[i+2])
+	return ans
