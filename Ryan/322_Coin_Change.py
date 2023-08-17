@@ -36,19 +36,17 @@ class Solution:
 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        if amount < 0:
-            return -1
-        elif amount ==0:
+        if amount  == 0:
             return 0
         dp = [0]
-        for a in range(1,amount+1):
-            cpr_set = set()
+        for a in range(1, amount+1):
+            ways = set()
             for c in coins:
                 if a-c>=0:
-                    cpr_set.add(dp[a-c]+1)
-            cpr_set.discard(0)
-            if len(cpr_set)==0:
+                    ways.add(dp[a-c]+1)
+            ways.discard(0)
+            if len(ways) == 0:
                 dp.append(-1)
             else:
-                dp.append(min(cpr_set))
+                dp.append(min(ways))
         return dp[-1]
