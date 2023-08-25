@@ -1,3 +1,30 @@
+# new_solution
+# Time: O(n)
+# Space: O(h) # since we use recursive
+# note: by using "if none return 0" can make the recursive simplier.
+class Solution:
+
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        max_sum = -math.inf
+                
+        def dfs(node):
+            nonlocal max_sum
+
+            if not node:
+                return 0
+
+            left_result = max(0, dfs(node.left))
+            right_result = max(0, dfs(node.right))
+
+            sub_result = node.val+left_result+right_result
+            max_sum = max(sub_result, max_sum)
+            return node.val+max(left_result, right_result)
+
+        dfs(root)
+        return max_sum
+
+
+
 # Solution 1
 # bottom-up to find the max_sum of subtree, and return each child's max_sum for roots to find if there is bigger sum
 # time: O(n)
